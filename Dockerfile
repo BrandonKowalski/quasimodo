@@ -1,4 +1,6 @@
-FROM golang:1.24-bullseye
+FROM debian:bullseye
+
+ARG GO_VERSION=1.25.6
 
 LABEL org.opencontainers.image.source="https://github.com/BrandonKowalski/quasimodo"
 LABEL org.opencontainers.image.description="Base image for gabagool-backed applications with Go, SDL2, and build tools"
@@ -11,6 +13,13 @@ RUN apt-get update && apt-get install -y \
     libsdl2-gfx-dev \
     jq \
     git \
+    curl \
+    ca-certificates \
     && rm -rf /var/lib/apt/lists/*
+
+RUN curl -fsSL https://go.dev/dl/go${GO_VERSION}.linux-$(dpkg --print-architecture).tar.gz \
+    | tar -C /usr/local -xz
+
+ENV PATH="/usr/local/go/bin:${PATH}"
 
 WORKDIR /build
