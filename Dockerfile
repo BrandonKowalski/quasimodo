@@ -17,7 +17,9 @@ RUN apt-get update && apt-get install -y \
     ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
-RUN curl -fsSL https://go.dev/dl/go${GO_VERSION}.linux-$(dpkg --print-architecture).tar.gz \
+RUN ARCH=$(dpkg --print-architecture) && \
+    case "$ARCH" in armhf) ARCH=armv6l ;; esac && \
+    curl -fsSL https://go.dev/dl/go${GO_VERSION}.linux-${ARCH}.tar.gz \
     | tar -C /usr/local -xz
 
 ENV PATH="/usr/local/go/bin:${PATH}"
