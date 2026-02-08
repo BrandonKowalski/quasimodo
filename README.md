@@ -16,7 +16,7 @@ Base Docker image for building gabagool-backed applications.
 
 ## What's included
 
-- Go 1.24 (Debian Bullseye)
+- Go 1.25.6 
 - GCC
 - SDL2 development libraries (core, ttf, image, gfx)
 - jq
