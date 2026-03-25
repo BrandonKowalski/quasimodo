@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 RUN ARCH=$(dpkg --print-architecture) && \
-    case "$ARCH" in armhf) ARCH=armv6l ;; esac && \
+    case "$ARCH" in armhf) ARCH=armv6l ;; i386) ARCH=386 ;; esac && \
     curl -fsSL https://go.dev/dl/go${GO_VERSION}.linux-${ARCH}.tar.gz \
     | tar -C /usr/local -xz
 
