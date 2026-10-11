@@ -16,7 +16,7 @@ Base Docker image for building gabagool-backed applications.
 
 ## What's included
 
-- Go 1.25.6 
+- Go 1.26.9 
 - GCC
 - SDL2 development libraries (core, ttf, image, gfx)
 - jq

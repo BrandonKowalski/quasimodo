@@ -1,11 +1,12 @@
 FROM debian:bullseye
 
-ARG GO_VERSION=1.25.6
+ARG GO_VERSION=1.26.9
 
 LABEL org.opencontainers.image.source="https://github.com/BrandonKowalski/quasimodo"
 LABEL org.opencontainers.image.description="Base image for gabagool-backed applications with Go, SDL2, and build tools"
 
-RUN apt-get update && apt-get install -y \
+RUN sed -i 's|http://deb.debian.org|http://archive.debian.org|g' /etc/apt/sources.list && \
+    apt-get update && apt-get install -y \
     gcc \
     libsdl2-dev \
     libsdl2-ttf-dev \
